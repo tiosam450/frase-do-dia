@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import logo from './assets/img/logo_frase_do_dia.webp'
+// @ts-ignore
 import promessasBiblicas from './promessas'
+// @ts-ignore
 import frasesBomDia from  './frasesBomDia'
 
 
