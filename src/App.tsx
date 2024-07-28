@@ -1,33 +1,54 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import logo from './assets/img/logo_frase_do_dia.webp'
+import promessasBiblicas from './promessas'
+import frasesBomDia from  './frasesBomDia'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [frase, setFrase] = useState('')
+  const categorias = [
+    'Promessas',
+    'Bom dia',
+    'Bom noite',
+  ]
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0)
+
+  const frases = [
+    {
+      categoria: 'Promessas',
+      frases: promessasBiblicas
+    },
+    {
+      categoria: 'Bom dia',
+      frases: frasesBomDia
+    }
+  ]
+
+  function gerar(){
+    const numeroAleatorio = Math.floor(Math.random( )* frases[categoriaSelecionada].frases.length)
+
+    setFrase(frases[categoriaSelecionada].frases[numeroAleatorio])
+
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container">
+        <div className="frases">
+
+          <div className="botoes">
+            {categorias.map((item, index) => (
+              <button className={categoriaSelecionada == index ? 'categoriaSelecionada' : ''} key={index} onClick={()=>setCategoriaSelecionada(index)}>{item}</button>
+            ))}
+          </div>
+
+          <img src={logo} alt="logo" />
+
+          <button className='btnGerar' onClick={gerar}>Gerar</button>
+
+          {frase !== '' && <h2>{frase}</h2>}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
