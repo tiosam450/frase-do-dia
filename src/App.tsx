@@ -11,7 +11,6 @@ function App() {
   const categorias = [
     'Promessas',
     'Bom dia',
-    'Bom noite',
   ]
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(0)
 
